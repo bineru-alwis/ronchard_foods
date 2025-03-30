@@ -1,0 +1,75 @@
+<script>
+    /* globals Chart:false */
+    
+    /*function fetchSKUs() {
+        google.script.run.withSuccessHandler((data) => {
+            skus = data;
+            console.log("SKUs Loaded:", skus);
+        }).getSKUs();
+    }*/
+    
+    addRow();
+    
+    function addRow() {
+    
+          const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+          const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    
+    
+          let skus;
+          google.script.run.withSuccessHandler((data) => {
+            skus = data;
+            console.log("SKUs Loaded:", skus);
+            // Get the table element in which you want to add row
+            let table = document.getElementById("inventory_table");
+        
+            // Create a row using the inserRow() method and
+            // specify the index where you want to add the row
+            
+            console.log(skus.length);
+    
+        for(let i=0; i<skus.length; i++){
+    
+            let row = table.insertRow(-1); // We are adding at the end
+              // Create table cells
+            let c1 = row.insertCell(0);
+            let c2 = row.insertCell(1);
+            let c3 = row.insertCell(2);
+            let c4 = row.insertCell(3);
+            let c5 = row.insertCell(4);
+            let c6 = row.insertCell(5);
+            let c7 = row.insertCell(6);
+            let c8 = row.insertCell(7);
+            let c9 = row.insertCell(8);
+        
+            // Add data to c1 and c2
+            c1.innerText = skus[i][0];
+            c2.innerText = skus[i][1];
+            c3.innerText = skus[i][2];
+            c4.innerText = skus[i][3];
+            c5.innerText = skus[i][4];
+            c6.innerText = skus[i][5];
+            c7.innerText = skus[i][6];
+            c8.innerText = skus[i][7];
+            c9.innerHTML = "<button type = \"button\" class=\"btn btn-sm\" style = \"color: green; font-size: 1.25rem;\" data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop\"><i class=\"bi bi-eye\"></i></button><button type = \"button\" class=\"btn btn-sm\" style = \"color: blue; font-size: 1.25rem;\" onclick=\"\" data-bs-toggle=\"tooltip\" data-bs-placement=\"top\" title=\"Add Stock\"><i class=\"bi bi-file-earmark-plus\"></i></button>";
+        }
+    
+          }).InventoryProductInfo();      
+       }
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+       
+    
+    </script>
+    
